@@ -17,10 +17,5 @@ namespace PlayfulEngine {
         /// The SpriteBatch for the game
         /// </summary>
         public static SpriteBatch SPRITE_BATCH;
-
-        /// <summary>
-        /// The ContentManager for the game
-        /// </summary>
-        public static ContentManager CONTENT_MANAGER;
     }
 }

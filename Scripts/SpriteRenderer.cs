@@ -43,7 +43,7 @@ namespace PlayfulEngine.Scripts {
             Rectangle sourceRect = sprite.sourceRect; // Gets the rect of the sprite
 
             // Draws the sprite
-            EngineGlobals.SPRITE_BATCH.Draw(sprite.sheet.rawTexture, gameObject.transform.position, sourceRect, spriteColor, gameObject.transform.rotation, new Vector2(sourceRect.Width / 2, sourceRect.Height / 2), gameObject.transform.scale, SpriteEffects.None, 0f);
+            EngineGlobals.SPRITE_BATCH.Draw(sprite.sheet.rawTexture, gameObject.transform.position, sourceRect, spriteColor, gameObject.transform.rotation, Vector2.Zero, gameObject.transform.scale, SpriteEffects.None, 0f);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace PlayfulEngine.UI {
         /// <summary>
         /// The font of the text
         /// </summary>
-        public SpriteFont font;
+        public SpriteFontBase font;
 
         /// <summary>
         /// Creates a new <see cref="UILabel"/>
@@ -31,7 +32,7 @@ namespace PlayfulEngine.UI {
         /// <param name="position">Where the text show render</param>
         /// <param name="text">The text to render</param>
         /// <param name="font">The font to render with</param>
-        public UILabel(Vector2 position, string text, SpriteFont font) : base(position){
+        public UILabel(Vector2 position, string text, SpriteFontBase font) : base(position){
             this.text = text;
             color = Color.White;
             this.font = font;
@@ -44,7 +45,7 @@ namespace PlayfulEngine.UI {
         /// <param name="text">The text to render</param>
         /// <param name="font">The font to render with</param>
         /// <param name="color">The color of the text</param>
-        public UILabel(Vector2 position, string text, Color color, SpriteFont font) : base(position) {
+        public UILabel(Vector2 position, string text, Color color, SpriteFontBase font) : base(position) {
             this.text = text;
             this.color = color;
             this.font = font;

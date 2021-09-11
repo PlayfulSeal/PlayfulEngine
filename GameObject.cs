@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using PlayfulEngine.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,13 +21,11 @@ namespace PlayfulEngine {
         /// Adds a <see cref="GOScript"/> to the <see cref="GameObject"/> [WARNING: ONLY ONE OF EACH TYPE OF SCRIPT]
         /// </summary>
         /// <param name="script">The <see cref="GOScript"/> to add</param>
-        public void AddScript(GOScript script) {
-            string scriptName = script.ToString(); // Gets the name of the script
-
-            if(!_scripts.ContainsKey(scriptName)) { // If it isn't added to the GO
-                Console.WriteLine("Adding script: " + scriptName);
+        public void AddScript(string label, GOScript script) {
+            if(!_scripts.ContainsKey(label)) { // If it isn't added to the GO
+                Debug.Log("Adding script: " + label);
                 script.gameObject = this;
-                _scripts.Add(scriptName, script); // Add it
+                _scripts.Add(label, script); // Add it
 
                 script.OnStart(); // Run it's start method
             }
@@ -37,28 +36,21 @@ namespace PlayfulEngine {
         /// </summary>
         /// <typeparam name="T">Type of <see cref="GOScript"/></typeparam>
         /// <returns>Either the <see cref="GOScript"/> or null</returns>
-        public T GetScript<T>() where T : GOScript {
-            Type scriptType = typeof(T);
-            string scriptName = scriptType.ToString();
-
-            if (_scripts.ContainsKey(scriptName)) {
-                return (T)_scripts[scriptName];
+        public GOScript GetScript(string label) {
+            if (_scripts.ContainsKey(label)) {
+                return _scripts[label];
             }
 
-            return null;
+            throw new MissingScriptException($"{this.ToString()}:{label}");
         }
 
         /// <summary>
         /// Removes a <see cref="GOScript"/> from the <see cref="GameObject"/>
         /// </summary>
         /// <typeparam name="T">Type of <see cref="GOScript"/></typeparam>
-        public void RemoveScript<T>() where T : GOScript {
-            Type scriptType = typeof(T);
-            string scriptName = scriptType.ToString();
-
-            if (_scripts.ContainsKey(scriptName)) {
-                _scripts.Remove(scriptName);
-                return;
+        public void RemoveScript(string label) {
+            if (_scripts.ContainsKey(label)) {
+                _scripts.Remove(label);
             }
 
             return;

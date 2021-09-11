@@ -13,17 +13,24 @@ namespace PlayfulEngine {
         /// </summary>
         public static Camera2D CAMERA;
 
+        public static string GAME_NAME;
+        public static string COMPANY_NAME;
+
+        public static SpriteSheet ENGINE_SPRITES;
+
         /// <summary>
         /// Creates a new <see cref="GameManager"/>
         /// </summary>
         /// <param name="assetLocation">Where assets should be loaded from</param>
         /// <param name="mouseVisibility">Is the mouse visible</param>
-        public GameManager(string assetLocation = "Assets", bool mouseVisibility = true) {
+        public GameManager(string gameName, string company, bool mouseVisibility = true) {
+            Debug.DebugMode = false;
+            GAME_NAME = gameName;
+            COMPANY_NAME = company;
             EngineGlobals.GRAPHICS_DEVICE_MANAGER = new GraphicsDeviceManager(this); // Creates a new GraphicsDeviceManager
-            Content.RootDirectory = assetLocation; // Sets the content directory
-            EngineGlobals.CONTENT_MANAGER = Content; // Sets the content manager
             IsMouseVisible = mouseVisibility; // Sets the mouse visiblity
             CAMERA = new Camera2D(); // Creates the camera
+            
         }
 
         /// <summary>
@@ -48,7 +55,7 @@ namespace PlayfulEngine {
 
         protected override void LoadContent() {
             EngineGlobals.SPRITE_BATCH = new SpriteBatch(GraphicsDevice); // Creates the sprite batch
-
+            
             LoadAssets(); // Loads the assets
         }
 
